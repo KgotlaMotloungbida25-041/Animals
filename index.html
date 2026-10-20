@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PawPedia — The Animal Gallery. Explore beautiful pictures of dogs, cats, rabbits, birds and more.">
+  <title>PawPedia — The Animal Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#home" aria-label="PawPedia home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="paw-pad"></span>
+          <span class="paw-toe t1"></span>
+          <span class="paw-toe t2"></span>
+          <span class="paw-toe t3"></span>
+          <span class="paw-toe t4"></span>
+        </span>
+        <span class="logo-text">Paw<strong>Pedia</strong></span>
+      </a>
+
+      <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#explore">Explore Animals</a></li>
+          <li>
+            <a href="#favorites">Favorites <span id="favCount" class="badge" aria-label="0 favorites">0</span></a>
+          </li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
+        <button id="menuToggle" class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+          <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========== HERO ========== -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">The Animal Gallery</p>
+          <h1>Discover the Wonderful World of Animals</h1>
+          <p class="hero-lead">Explore beautiful pictures of your favorite domestic animals — from playful puppies and curious cats to gentle horses and fluffy sheep.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#explore">Explore Animals</a>
+            <button id="heroRandomBtn" class="btn btn-secondary" type="button">Surprise Me</button>
+          </div>
+          <ul class="hero-stats" aria-label="PawPedia statistics">
+            <li><strong id="statAnimals">0</strong><span>Animals featured</span></li>
+            <li><strong id="statSpecies">0</strong><span>Species</span></li>
+            <li><strong id="statFavorites">0</strong><span>Your favorites</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-collage" aria-hidden="false">
+          <figure class="collage-item c1">
+            <img src="https://loremflickr.com/700/900/golden,retriever?lock=11" alt="A happy golden retriever looking at the camera" loading="eager" width="700" height="900">
+          </figure>
+          <figure class="collage-item c2">
+            <img src="https://loremflickr.com/600/600/cat,kitten?lock=12" alt="A curious kitten with bright eyes" loading="eager" width="600" height="600">
+          </figure>
+          <figure class="collage-item c3">
+            <img src="https://loremflickr.com/600/600/rabbit,bunny?lock=13" alt="A soft rabbit sitting in the grass" loading="eager" width="600" height="600">
+          </figure>
+          <span class="blob" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ANIMAL OF THE DAY ========== -->
+    <section id="animal-of-the-day" class="section section-alt" aria-labelledby="dayHeading">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Featured today</p>
+          <h2 id="dayHeading">Animal of the Day</h2>
+        </div>
+        <article id="dayCard" class="day-card" aria-live="polite">
+          <!-- Filled by script.js -->
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section id="explore" class="section" aria-labelledby="exploreHeading">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The gallery</p>
+          <h2 id="exploreHeading">Explore Animals</h2>
+          <p class="section-sub">Search, filter and sort to find your new favorite friend.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-box" role="search">
+            <label for="searchInput" class="visually-hidden">Search animals by name, species, breed or keyword</label>
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input id="searchInput" type="search" placeholder="Search name, breed, or keyword (try “playful”)" autocomplete="off">
+            <button id="clearSearch" class="clear-btn" type="button" aria-label="Clear search" hidden>✕</button>
+          </div>
+
+          <div class="sort-box">
+            <label for="sortSelect">Sort by</label>
+            <select id="sortSelect">
+              <option value="default">Featured</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+              <option value="species">Species</option>
+            </select>
+          </div>
+
+          <button id="randomBtn" class="btn btn-accent" type="button">🎲 Discover a Random Animal</button>
+        </div>
+
+        <div id="filterBar" class="filter-bar" role="group" aria-label="Filter animals by species">
+          <!-- Filter buttons are generated by script.js -->
+        </div>
+
+        <p id="resultsCount" class="results-count" role="status" aria-live="polite"></p>
+
+        <ul id="animalGrid" class="animal-grid" aria-label="Animal gallery"></ul>
+
+        <div id="emptyState" class="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">🐾</div>
+          <h3>No animals found</h3>
+          <p>We couldn't find a match. Try a different keyword or choose another species.</p>
+          <button id="resetFilters" class="btn btn-primary" type="button">Reset filters</button>
+        </div>
+
+        <div class="load-more-wrap">
+          <button id="loadMoreBtn" class="btn btn-secondary" type="button" hidden>Load More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAVORITES ========== -->
+    <section id="favorites" class="section section-alt" aria-labelledby="favoritesHeading">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Saved by you</p>
+          <h2 id="favoritesHeading">Your Favorites</h2>
+          <p class="section-sub">Tap the heart on any animal to save it here. Favorites stay saved in your browser.</p>
+        </div>
+
+        <ul id="favoritesGrid" class="animal-grid" aria-label="Favorite animals"></ul>
+
+        <div id="favoritesEmpty" class="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">🤍</div>
+          <h3>No favorites yet</h3>
+          <p>Browse the gallery and tap the heart on animals you love.</p>
+          <a class="btn btn-primary" href="#explore">Browse the gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="section" aria-labelledby="aboutHeading">
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="eyebrow">About PawPedia</p>
+          <h2 id="aboutHeading">Welcome to our little corner of the animal kingdom</h2>
+          <p>PawPedia is a friendly photo gallery made for animal lovers. Browse portraits of dogs, cats, farm friends and tiny pocket pets, and learn a few surprising facts along the way.</p>
+          <p>Our mission is to celebrate the beauty and diversity of domestic animals — the companions and helpers who share our homes, farms and lives.</p>
+        </div>
+        <ul class="about-cards">
+          <li class="about-card"><span class="about-emoji" aria-hidden="true">📸</span><strong>Beautiful photos</strong><span>Every animal gets a portrait.</span></li>
+          <li class="about-card"><span class="about-emoji" aria-hidden="true">💡</span><strong>Fun facts</strong><span>Learn something new each visit.</span></li>
+          <li class="about-card"><span class="about-emoji" aria-hidden="true">❤️</span><strong>Save favorites</strong><span>Build your own collection.</span></li>
+          <li class="about-card"><span class="about-emoji" aria-hidden="true">🌿</span><strong>10 species</strong><span>From hamsters to horses.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="logo" href="#home" aria-label="PawPedia home">
+          <span class="logo-mark" aria-hidden="true">
+            <span class="paw-pad"></span>
+            <span class="paw-toe t1"></span>
+            <span class="paw-toe t2"></span>
+            <span class="paw-toe t3"></span>
+            <span class="paw-toe t4"></span>
+          </span>
+          <span class="logo-text">Paw<strong>Pedia</strong></span>
+        </a>
+        <p>A cozy gallery celebrating the beauty and diversity of domestic animals.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#explore">Explore Animals</a></li>
+          <li><a href="#favorites">Favorites</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> PawPedia. All rights reserved.</p>
+      <span class="footer-paws" aria-hidden="true">🐾 🐾 🐾</span>
+    </div>
+  </footer>
+
+  <!-- ========== DETAILS MODAL ========== -->
+  <div id="modalBackdrop" class="modal-backdrop" hidden>
+    <div id="animalModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button id="modalClose" class="modal-close" type="button" aria-label="Close details">✕</button>
+      <div class="modal-body">
+        <div class="modal-media">
+          <img id="modalImage" src="" alt="">
+        </div>
+        <div class="modal-info">
+          <p id="modalSpecies" class="modal-species"></p>
+          <h2 id="modalTitle"></h2>
+          <p id="modalBreed" class="modal-breed"></p>
+          <p id="modalDescription" class="modal-description"></p>
+          <h3>Interesting facts</h3>
+          <ul id="modalFacts" class="modal-facts"></ul>
+          <div class="modal-actions">
+            <button id="modalFav" class="btn btn-primary fav-toggle" type="button" aria-pressed="false">
+              <span class="heart" aria-hidden="true">♡</span>
+              <span class="fav-label">Add to favorites</span>
+            </button>
+            <button id="modalRandom" class="btn btn-secondary" type="button">🎲 Another random animal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
